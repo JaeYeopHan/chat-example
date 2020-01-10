@@ -1,0 +1,12 @@
+{
+  "name": "chat-example",
+  "version": "0.0.1",
+  "description": "Chatting application with Socket",
+  "main": "index.js",
+  "scripts": {
+    "start:client": "cd client && npm start",
+    "start:server": "cd server && npm run dev"
+  },
+  "author": "Jbee[ljyhanll@gmail.com]",
+  "license": "MIT"
+}
