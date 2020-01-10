@@ -82,7 +82,7 @@ interface ChatRoom {
   messages: Message[]
 }
 interface Message {
-  fromId: number
+  userId: number
   type: 'text' | 'image'
   contents: string
 }

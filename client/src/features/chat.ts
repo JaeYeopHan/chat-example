@@ -3,15 +3,30 @@ import { AppThunk } from '.'
 
 import { createChatRoom, IChatRoom, fetchChatRooms } from '@/api/chat'
 import { loadingActions } from './loading'
-import { connect } from '@/api/ws'
+import { connect, emit, leave } from '@/api/ws'
+
+export interface IMessage {
+  userId: string
+  type: 'text' | 'image'
+  contents: string
+}
+
+interface IReceivePayload {
+  roomId: string
+  message: IMessage
+}
 
 export interface IChatState {
   rooms: IChatRoom[]
+  isAvailable: boolean
+  chats: { [key: string]: IMessage[] }
 }
 
 const name = 'Chat'
 const initialState = {
   rooms: [],
+  isAvailable: false,
+  chats: {},
 }
 
 const _ = createSlice({
@@ -20,6 +35,17 @@ const _ = createSlice({
   reducers: {
     success(state: IChatState, action: PayloadAction<IChatRoom[]>) {
       state.rooms = action.payload
+    },
+    connectComplete(state: IChatState) {
+      state.isAvailable = true
+    },
+    receive(state: IChatState, action: PayloadAction<IReceivePayload>) {
+      const { roomId, message } = action.payload
+
+      if (!state.chats[roomId]) {
+        state.chats[roomId] = []
+      }
+      state.chats[roomId].push(message)
     },
   },
 })
@@ -56,10 +82,47 @@ export function postChatRoom(): AppThunk {
   }
 }
 
-export function initializeChat(id: string): AppThunk {
+export function initializeChat(roomId: string, me: string): AppThunk {
   return async function(dispatch) {
-    const results = await connect(id)
-    console.log(results)
+    const cb = (message: IMessage) =>
+      dispatch(
+        chatActions.receive({
+          roomId,
+          message,
+        }),
+      )
+    const results = await connect(roomId, me, cb)
+
+    if (results) {
+      dispatch(chatActions.connectComplete())
+    }
+  }
+}
+
+export function sendMessage(
+  roomId: string,
+  userId: string,
+  contents: string,
+): AppThunk {
+  return async function(dispatch) {
+    if (!userId) {
+      return
+    }
+    emit(roomId, {
+      userId,
+      type: 'text',
+      contents,
+    })
+  }
+}
+
+export function leaveChat(roomId: string): AppThunk {
+  return async function(dispatch) {
+    try {
+      leave(roomId)
+    } catch (e) {
+      console.error(e)
+    }
   }
 }
 
@@ -70,4 +133,6 @@ export const chatThunks = {
   postChatRoom,
   getChatRooms,
   initializeChat,
+  sendMessage,
+  leaveChat,
 }

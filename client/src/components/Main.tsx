@@ -9,13 +9,20 @@ export const Main = () => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setVal(e.target.value)
   }
+  const handleClick = () => {
+    if (val === '') {
+      return
+    }
+    dispatch(userThunks.login(val))
+    setVal('')
+  }
 
   return (
     <section>
       <h1>Chat</h1>
       <label htmlFor="login"></label>
       <input id="login" type="text" onChange={handleChange} />
-      <button onClick={() => dispatch(userThunks.login(val))}>Sign in</button>
+      <button onClick={handleClick}>Sign in</button>
     </section>
   )
 }

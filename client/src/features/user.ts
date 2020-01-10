@@ -1,18 +1,26 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { userLogin } from '@/api/user'
 import { push } from '@/utils/history'
 
 import { AppThunk } from '.'
 
+export interface IUserState {
+  me: string
+}
+
 const name = 'User'
-const initialState = {}
+const initialState: IUserState = {
+  me: '',
+}
 
 const _ = createSlice({
   name,
   initialState,
   reducers: {
-    success() {},
+    success(state: IUserState, action: PayloadAction<string>) {
+      state.me = action.payload
+    },
     fail() {},
   },
 })
@@ -23,7 +31,7 @@ export function login(id: string): AppThunk {
       const results = await userLogin({ id })
 
       if (results.success) {
-        dispatch(userActions.success())
+        dispatch(userActions.success(id))
         push(`/chat-list/${id}`)
       } else {
         dispatch(userActions.fail())

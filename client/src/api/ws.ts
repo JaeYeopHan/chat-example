@@ -1,13 +1,47 @@
 import io from 'socket.io-client'
+
 import { BASE_URL } from '.'
+import { IMessage } from '@/features/chat'
 
-const socket = io.connect(BASE_URL)
+let socket: any = null
 
-export async function connect(id: string) {
-  return new Promise((resolve, reject) => {
-    socket.on('connect', function() {
-      console.log('[SOCKET] Connected!')
-      resolve()
+type ReceiveCallback = (message: IMessage) => void
+
+export interface IJoinRoom {
+  roomId: string
+  me: string
+}
+
+export interface ISendMessage {
+  roomId: string
+  message: IMessage
+}
+
+export async function connect(
+  roomId: string,
+  me: string,
+  receiveCallback: ReceiveCallback,
+) {
+  socket = io.connect(`${BASE_URL}/chat`)
+
+  return new Promise(resolve => {
+    socket.on('connect', () => {
+      socket.on('send:message', (message: IMessage) => {
+        receiveCallback(message)
+      })
+
+      const data: IJoinRoom = { roomId, me }
+      socket.emit('join:room', data)
+      resolve(true)
     })
   })
+}
+
+export function emit(roomId: string, message: IMessage) {
+  const data: ISendMessage = { roomId, message }
+  socket.emit('send:message', data)
+}
+
+export function leave(roomId: string) {
+  socket.leave(roomId)
 }
