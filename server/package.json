@@ -41,6 +41,7 @@
     "pug": "^2.0.4",
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
+    "socket.io": "^2.3.0",
     "winston": "^3.2.1"
   },
   "devDependencies": {
@@ -73,6 +74,7 @@
     "@types/request": "^2.48.3",
     "@types/request-promise": "^4.1.44",
     "@types/shelljs": "^0.8.5",
+    "@types/socket.io": "^2.1.4",
     "@types/supertest": "^2.0.8",
     "@types/winston": "^2.4.4",
     "@typescript-eslint/eslint-plugin": "^2.3.1",
