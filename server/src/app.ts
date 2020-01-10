@@ -7,6 +7,7 @@ import * as userController from './controllers/user'
 import * as chatController from './controllers/chat'
 
 const app = express()
+
 app.use(cors())
 
 app.set('port', process.env.PORT || 8000)

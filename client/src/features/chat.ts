@@ -3,6 +3,7 @@ import { AppThunk } from '.'
 
 import { createChatRoom, IChatRoom, fetchChatRooms } from '@/api/chat'
 import { loadingActions } from './loading'
+import { connect } from '@/api/ws'
 
 export interface IChatState {
   rooms: IChatRoom[]
@@ -55,10 +56,18 @@ export function postChatRoom(): AppThunk {
   }
 }
 
+export function initializeChat(id: string): AppThunk {
+  return async function(dispatch) {
+    const results = await connect(id)
+    console.log(results)
+  }
+}
+
 export const CHAT = _.name
 export const chatReducer = _.reducer
 export const chatActions = _.actions
 export const chatThunks = {
   postChatRoom,
   getChatRooms,
+  initializeChat,
 }

@@ -1,8 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useParams } from 'react-router'
+import { useDispatch } from 'react-redux'
+import { chatThunks } from '@/features/chat'
 
 export const Chat = () => {
-  const { id } = useParams()
+  const { id = '' } = useParams()
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(chatThunks.initializeChat(id))
+  }, [])
 
   return (
     <section>

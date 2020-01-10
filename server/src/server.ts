@@ -13,4 +13,11 @@ const server = app.listen(app.get('port'), () => {
   console.log('  Press CTRL-C to stop\n')
 })
 
+const io = require('socket.io').listen(server)
+
+io.origins('*:*') // for latest version
+io.on('connection', function(socket: any) {
+  console.log('a user connected')
+})
+
 export default server

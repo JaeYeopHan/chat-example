@@ -6,8 +6,11 @@ interface AxiosResponseData {
   results: any
 }
 
+export const BASE_URL = 'http://localhost:8000'
+
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:8000',
+  baseURL: BASE_URL,
+  withCredentials: true,
 })
 
 axiosInstance.interceptors.response.use(
