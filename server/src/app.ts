@@ -4,6 +4,7 @@ import bodyParser from 'body-parser'
 import flash from 'express-flash'
 import cors from 'cors'
 import * as userController from './controllers/user'
+import * as chatController from './controllers/chat'
 
 const app = express()
 app.use(cors())
@@ -16,5 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(flash())
 
 app.post('/login', userController.login)
+app.get('/chatrooms', chatController.getChatRooms)
+app.post('/chatrooms', chatController.createChatRoom)
 
 export default app

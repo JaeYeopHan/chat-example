@@ -9,6 +9,7 @@ export const Main = () => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setVal(e.target.value)
   }
+
   return (
     <section>
       <h1>Chat</h1>

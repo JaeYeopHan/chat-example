@@ -19,15 +19,15 @@ const _ = createSlice({
 
 export function login(id: string): AppThunk {
   return async function(dispatch) {
-    const results = await userLogin({ id })
-
-    if (results.success) {
-      dispatch(userActions.success())
-      push(`/chat-list/${id}`)
-    } else {
-      dispatch(userActions.fail())
-    }
     try {
+      const results = await userLogin({ id })
+
+      if (results.success) {
+        dispatch(userActions.success())
+        push(`/chat-list/${id}`)
+      } else {
+        dispatch(userActions.fail())
+      }
     } catch (e) {
       console.error(e)
     }
@@ -35,7 +35,7 @@ export function login(id: string): AppThunk {
 }
 
 export const USER = _.name
-export const userReducers = _.reducer
+export const userReducer = _.reducer
 export const userActions = _.actions
 export const userThunks = {
   login,

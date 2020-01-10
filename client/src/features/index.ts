@@ -2,10 +2,14 @@ import { combineReducers } from '@reduxjs/toolkit'
 import { Action, configureStore } from '@reduxjs/toolkit'
 import { ThunkAction } from 'redux-thunk'
 
-import { USER, userReducers } from './user'
+import { USER, userReducer } from './user'
+import { CHAT, chatReducer } from './chat'
+import { LOADING, loadingReducer } from './loading'
 
 const rootReducer = combineReducers({
-  [USER]: userReducers,
+  [CHAT]: chatReducer,
+  [USER]: userReducer,
+  [LOADING]: loadingReducer,
 })
 
 const store = configureStore({ reducer: rootReducer })

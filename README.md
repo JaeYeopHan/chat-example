@@ -34,27 +34,27 @@
 
 > 사용자가 로그인을 할 수 있다.
 
-- [ ] input
-- [ ] button
+- [x] input
+- [x] button
 
 #### /list/{id}
 
 > 채팅방 목록을 볼 수 있다.
 > 자신이 만든 방 그리고 초대된 방의 리스트가 노출된다.
 
-- [ ] chatting list
-  - [ ] item
-    - [ ] title
-    - [ ] created time
-    - [ ] button(join)
-- [ ] button(create chat room)
-- [ ] title(Chat List)
+- [x] chatting list
+  - [x] item
+    - [x] title
+    - [x] created time
+    - [x] button(join)
+- [x] button(create chat room)
+- [x] title(Chat List)
 
 #### /chat/{id}
 
 > 채팅방 화면
 
-- [ ] title
+- [x] title
 - [ ] input(message)
 - [ ] button(send)
 - [ ] button(image)
