@@ -1,15 +1,14 @@
 import React from 'react'
+import { Route, Switch } from 'react-router-dom'
+
+import { ChatList } from './chat-list/ChatList'
+import { Main } from './Main'
 
 export default () => {
   return (
-    <h1>
-      <a
-        href="https://github.com/JaeYeopHan/cra-template-unicorn"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        cra-template-unicorn
-      </a>
-    </h1>
+    <Switch>
+      <Route exact={true} path="/chat-list/:id" component={ChatList} />
+      <Route exact={true} path="/" component={Main} />
+    </Switch>
   )
 }
