@@ -1,0 +1,33 @@
+.main {
+  margin: auto;
+  padding: 32px;
+  max-width: 640px;
+  min-width: 375px;
+
+  .title {
+    text-align: center;
+    font-size: 64px;
+    font-weight: 800;
+  }
+
+  .login {
+    text-align: center;
+
+    &-input {
+      width: 240px;
+      font-size: 16px;
+      border: transparent;
+      border-bottom: 2px solid #9862ae;
+      margin-bottom: 4px;
+    }
+    &-button {
+      width: 240px;
+      height: 32px;
+      font-size: 16px;
+      border: transparent;
+      background-color: #815a8f;
+      border-radius: 8px;
+      color: #fff;
+    }
+  }
+}

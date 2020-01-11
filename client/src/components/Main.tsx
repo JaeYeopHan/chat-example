@@ -1,3 +1,5 @@
+import './Main.scss'
+
 import React, { ChangeEvent, useState } from 'react'
 import { useDispatch } from 'react-redux'
 
@@ -18,11 +20,23 @@ export const Main = () => {
   }
 
   return (
-    <section>
-      <h1>Chat</h1>
-      <label htmlFor="login"></label>
-      <input id="login" type="text" onChange={handleChange} />
-      <button onClick={handleClick}>Sign in</button>
-    </section>
+    <main className="main">
+      <h1 className="title">Chat</h1>
+      <div className="login">
+        <label htmlFor="login"></label>
+        <input
+          className="login-input"
+          id="login"
+          type="text"
+          onChange={handleChange}
+          placeholder="연결할 ID를 입력하세요."
+        />
+        <div>
+          <button className="login-button" onClick={handleClick}>
+            Sign in
+          </button>
+        </div>
+      </div>
+    </main>
   )
 }
