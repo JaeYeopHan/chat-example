@@ -1,0 +1,51 @@
+.welcome-message {
+  color: #777;
+  text-align: center;
+  font-size: 16px;
+}
+
+.btn-wrapper {
+  text-align: right;
+}
+.create-btn {
+  font-size: 16px;
+  padding: 4px 8px;
+  background-color: #9862ae;
+  color: #fff;
+  border: transparent;
+  border-radius: 4px;
+}
+
+.room-wrapper {
+  padding: 16px 0px;
+}
+
+.room {
+  display: flex;
+  text-align: center;
+  border-bottom: 1px solid #9862ae;
+
+  &-item {
+    padding: 12px 8px;
+    font-size: 16px;
+    flex: 1 1;
+  }
+
+  &-index {
+    color: #555;
+  }
+
+  &-title {
+    flex: 3 1;
+    text-align: left;
+  }
+
+  &-join-btn {
+    flex: 0 1;
+    color: #d97d97;
+    background-color: transparent;
+    border: transparent;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+}

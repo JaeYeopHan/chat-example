@@ -1,3 +1,5 @@
+import './ChatList.scss'
+
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
@@ -7,6 +9,8 @@ import { push } from '@/utils/history'
 import { IChatRoom } from '@/api/chat'
 import { LOADING, ILoadingState } from '@/features/loading'
 import { Loading } from '../shared/Loading'
+
+import { getDate } from '@/utils/date'
 
 export const ChatList = () => {
   const { id } = useParams()
@@ -27,23 +31,35 @@ export const ChatList = () => {
   }, [dispatch])
 
   return (
-    <section>
-      <h1>ChatList</h1>
-      <h2>Hello, {id}</h2>
-      <button onClick={handleClickCreate}>Create</button>
-      <ul>
+    <main className="main">
+      <h2 className="title">ChatList</h2>
+      <h3 className="welcome-message">Hello, {id}</h3>
+      <div className="btn-wrapper">
+        <button className="create-btn" onClick={handleClickCreate}>
+          Create
+        </button>
+      </div>
+      <ul className="room-wrapper">
         {loading[CHAT] ? (
           <Loading />
         ) : (
-          state.rooms.map((info: IChatRoom) => (
-            <li key={info.id}>
-              <div>{info.title}</div>
-              <div>{info.createdTime}</div>
-              <button onClick={() => handleClickJoin(info.id)}>Join</button>
+          state.rooms.map((info: IChatRoom, index: number) => (
+            <li key={info.id} className="room">
+              <div className="room-item room-index">{index}</div>
+              <div className="room-item room-title">{info.title}</div>
+              <div className="room-item room-created-time">
+                {getDate(info.createdTime)}
+              </div>
+              <div
+                className="room-item room-join-btn"
+                onClick={() => handleClickJoin(info.id)}
+              >
+                join
+              </div>
             </li>
           ))
         )}
       </ul>
-    </section>
+    </main>
   )
 }

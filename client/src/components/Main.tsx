@@ -21,7 +21,7 @@ export const Main = () => {
 
   return (
     <main className="main">
-      <h1 className="title">Chat</h1>
+      <h2 className="title">Chat</h2>
       <div className="login">
         <label htmlFor="login"></label>
         <input
