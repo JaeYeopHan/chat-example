@@ -1,0 +1,28 @@
+.admin-contents {
+  text-align: center;
+  background-color: #999;
+  color: #fff;
+  padding: 4px;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.message {
+  margin: 12px 0px;
+  display: flex;
+
+  &-me {
+    text-align: right;
+  }
+
+  &-body {
+    flex: 1;
+    padding-left: 12px;
+    width: 100%;
+    &-name {
+      color: #888;
+      margin-bottom: 4px;
+    }
+  }
+}

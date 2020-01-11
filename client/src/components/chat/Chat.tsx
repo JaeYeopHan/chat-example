@@ -1,3 +1,5 @@
+import './Chat.scss'
+
 import React, { useEffect, useState, ChangeEvent } from 'react'
 import { useParams } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
@@ -34,17 +36,21 @@ export const Chat = () => {
   }, [dispatch, roomId, me])
 
   return (
-    <section>
-      <h2>Chat: #{roomId}</h2>
-      <label htmlFor="message-text-input"></label>
-      <input
-        type="text"
-        id="message-text-input"
-        value={val}
-        onChange={handleChange}
-      />
-      <button onClick={handleClick}>Send</button>
-
+    <main className="main">
+      <h2 className="sub-title">Chat: #{roomId}</h2>
+      <div className="input">
+        <label htmlFor="message-text-input"></label>
+        <input
+          type="text"
+          id="message-text-input"
+          className="input-message"
+          value={val}
+          onChange={handleChange}
+        />
+        <button className="input-btn" onClick={handleClick}>
+          Send
+        </button>
+      </div>
       {messages && (
         <div className="wrapper">
           {messages.map((message, index) => (
@@ -52,6 +58,6 @@ export const Chat = () => {
           ))}
         </div>
       )}
-    </section>
+    </main>
   )
 }

@@ -108,6 +108,7 @@ export function sendMessage(
     if (!userId) {
       return
     }
+
     emit(roomId, {
       userId,
       type: 'text',

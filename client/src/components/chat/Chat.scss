@@ -1,0 +1,19 @@
+.sub-title {
+  font-size: 24px;
+}
+
+.input {
+  width: 100%;
+  display: flex;
+  padding: 12px 0px;
+
+  &-message {
+    flex: 4;
+    border: 1px solid #d97d97;
+  }
+  &-btn {
+    flex: 1;
+    background-color: #d97d97;
+    border: transparent;
+  }
+}

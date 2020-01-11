@@ -1,3 +1,6 @@
+import './Message.scss'
+
+import classnames from 'classnames'
 import React from 'react'
 import { IMessage } from '@/features/chat'
 
@@ -6,14 +9,22 @@ interface IMessageProps extends IMessage {
 }
 
 export const Message = (props: IMessageProps) => {
+  const isAdmin = props.userId === '__admin__'
   const isMe = props.userId === props.me
+  const messageStyle = classnames('message', {
+    'message-me': isMe,
+  })
+
+  if (isAdmin) {
+    return <div className="message admin-contents">{props.contents}</div>
+  }
 
   return (
-    <div>
-      <div className="profile">
-        {isMe ? '[Me] ' : ''} {props.userId}:
+    <div className={messageStyle}>
+      <div className="message-body">
+        <div className="message-body-name">{props.userId}</div>
+        <div className="message-body-contents">{props.contents}</div>
       </div>
-      <div className="contents">{props.contents}</div>
     </div>
   )
 }

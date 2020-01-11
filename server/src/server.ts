@@ -32,7 +32,7 @@ const server = app.listen(app.get('port'), () => {
 
 const io = require('socket.io').listen(server)
 
-io.origins('*:*') // for latest version
+io.origins('*:*')
 
 const chat = io.of('/chat').on('connection', (socket: Socket) => {
   socket.on('send:message', ({ roomId, message }: ISendMessage) => {
