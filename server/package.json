@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "npm run serve",
-    "build": "npm run lint && npm run build-ts",
+    "build": "npm run build-ts",
     "serve": "node dist/server.js",
     "watch-node": "nodemon dist/server.js",
     "test": "jest --forceExit --coverage --verbose",
