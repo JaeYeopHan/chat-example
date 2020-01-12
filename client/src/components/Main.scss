@@ -30,4 +30,15 @@
       color: #fff;
     }
   }
+
+  &-message {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 800;
+
+    &-link {
+      padding: 12px;
+      text-align: center;
+    }
+  }
 }
