@@ -7,6 +7,7 @@ import { chatThunks, IChatState, CHAT } from '@/features/chat'
 import { RootState } from '@/features'
 import { USER, IUserState } from '@/features/user'
 import { Message } from './Message'
+import { useCheckLogin } from '@/hooks/useCheckLogin'
 
 export const Chat = () => {
   const { id: roomId = '' } = useParams()
@@ -34,6 +35,7 @@ export const Chat = () => {
     }
   }
 
+  useCheckLogin(me)
   useEffect(() => {
     dispatch(chatThunks.initializeChat(roomId, me))
 

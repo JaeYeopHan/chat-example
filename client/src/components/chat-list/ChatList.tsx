@@ -10,6 +10,7 @@ import { Loading } from '../shared/Loading'
 
 import { USER, IUserState, userThunks } from '@/features/user'
 import { Rooms } from './Rooms'
+import { useCheckLogin } from '@/hooks/useCheckLogin'
 
 export const ChatList = () => {
   const { id } = useParams()
@@ -26,6 +27,7 @@ export const ChatList = () => {
     dispatch(userThunks.logout(me))
   }
 
+  useCheckLogin(me)
   useEffect(() => {
     dispatch(chatThunks.getChatRooms(me))
   }, [dispatch, me])
