@@ -7,13 +7,20 @@
 .btn-wrapper {
   text-align: right;
 }
-.create-btn {
+.btn {
+  margin-left: 4px;
   font-size: 16px;
   padding: 4px 8px;
-  background-color: #9862ae;
   color: #fff;
   border: transparent;
   border-radius: 4px;
+}
+
+.create-btn {
+  background-color: #9862ae;
+}
+.logout-btn {
+  background-color: #674375;
 }
 
 .room-wrapper {
