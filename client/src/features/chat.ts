@@ -52,6 +52,10 @@ const _ = createSlice({
       }
       state.chats[roomId].push(message)
     },
+    clearRoom(state: IChatState, action: PayloadAction<string>) {
+      const roomId = action.payload
+      state.chats[roomId] = []
+    },
   },
 })
 
@@ -125,8 +129,8 @@ export function sendMessage(
 export function leaveChat(roomId: string): AppThunk {
   return async function(dispatch) {
     try {
-      // dispatch(chatActions.clearRoom(roomId))
       leave()
+      dispatch(chatActions.clearRoom(roomId))
     } catch (e) {
       console.error(e)
     }
