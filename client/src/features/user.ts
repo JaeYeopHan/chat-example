@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { userLogin, userLogout } from '@/api/user'
-import { push } from '@/utils/history'
+import { push, redirect } from '@/utils/history'
 
 import { AppThunk } from '.'
 
@@ -50,6 +50,7 @@ export function logout(id: string): AppThunk {
       if (results.success) {
         dispatch(userActions.success(''))
         alert(`로그아웃 되었습니다. ${id}`)
+        redirect('/')
       } else {
         dispatch(userActions.fail())
       }
