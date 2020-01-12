@@ -1,28 +1,33 @@
 .admin-contents {
-  text-align: center;
+  margin: 12px 0px;
   background-color: #999;
   color: #fff;
-  padding: 4px;
-  width: 100%;
+  padding: 4px 12px;
   border-radius: 8px;
   font-size: 14px;
 }
 
 .message {
-  margin: 12px 0px;
-  display: flex;
-
+  flex: 1;
   &-me {
     text-align: right;
   }
 
-  &-body {
-    flex: 1;
-    padding-left: 12px;
-    width: 100%;
-    &-name {
-      color: #888;
-      margin-bottom: 4px;
-    }
+  width: 100%;
+  &-wrapper {
+    display: inline-block;
+    max-width: 240px;
+    margin: 8px 0px;
+  }
+  &-name {
+    color: #888;
+    margin-bottom: 2px;
+  }
+  &-contents {
+    word-break: break-all;
+    border-radius: 8px;
+    padding: 8px;
+    display: inline-block;
+    background-color: rgb(230, 207, 236);
   }
 }

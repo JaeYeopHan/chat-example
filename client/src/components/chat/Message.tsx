@@ -16,14 +16,14 @@ export const Message = (props: IMessageProps) => {
   })
 
   if (isAdmin) {
-    return <div className="message admin-contents">{props.contents}</div>
+    return <div className="admin-contents">{props.contents}</div>
   }
 
   return (
     <div className={messageStyle}>
-      <div className="message-body">
-        <div className="message-body-name">{props.userId}</div>
-        <div className="message-body-contents">{props.contents}</div>
+      <div className="message-wrapper">
+        <div className="message-name">{props.userId}</div>
+        <div className="message-contents">{props.contents}</div>
       </div>
     </div>
   )
