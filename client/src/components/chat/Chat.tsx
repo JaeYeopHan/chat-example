@@ -20,7 +20,7 @@ export const Chat = () => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setVal(e.target.value)
   }
-  const handleClick = () => {
+  const handleClickSend = () => {
     if (val === '') {
       return
     }
@@ -32,6 +32,14 @@ export const Chat = () => {
 
     if (targetId) {
       dispatch(chatThunks.inviteUser(roomId, targetId))
+    }
+  }
+
+  const handleChangeFile = async (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      dispatch(chatThunks.sendImage(roomId, me, e.target.files[0]))
+    } else {
+      alert('이미지 전송이 실패했습니다.')
     }
   }
 
@@ -59,9 +67,19 @@ export const Chat = () => {
           value={val}
           onChange={handleChange}
         />
-        <button className="input-btn" onClick={handleClick}>
+        <button className="input-btn" onClick={handleClickSend}>
           Send
         </button>
+        <label className="input-btn input-image-label" htmlFor="image">
+          Image
+        </label>
+        <input
+          id="image"
+          type="file"
+          accept="image/*"
+          className="input-image"
+          onChange={handleChangeFile}
+        />
       </div>
       {messages && (
         <div className="wrapper">

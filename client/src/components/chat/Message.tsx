@@ -9,21 +9,26 @@ interface IMessageProps extends IMessage {
 }
 
 export const Message = (props: IMessageProps) => {
-  const isAdmin = props.userId === '__admin__'
-  const isMe = props.userId === props.me
+  const { me, userId, type, contents } = props
+  const isAdmin = userId === '__admin__'
+  const isMe = userId === me
   const messageStyle = classnames('message', {
     'message-me': isMe,
   })
 
   if (isAdmin) {
-    return <div className="admin-contents">{props.contents}</div>
+    return <div className="admin-contents">{contents}</div>
   }
 
   return (
     <div className={messageStyle}>
       <div className="message-wrapper">
-        <div className="message-name">{props.userId}</div>
-        <div className="message-contents">{props.contents}</div>
+        <div className="message-name">{userId}</div>
+        {type === 'text' ? (
+          <div className="message-contents">{contents}</div>
+        ) : (
+          <img className="message-image" src={contents} alt="image_alt" />
+        )}
       </div>
     </div>
   )

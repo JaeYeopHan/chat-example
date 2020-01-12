@@ -16,6 +16,15 @@
     background-color: #d97d97;
     border: transparent;
   }
+  &-image {
+    display: none;
+
+    &-label {
+      background-color: #d57bf0;
+      text-align: center;
+      padding-top: 5px;
+    }
+  }
 }
 
 .invite-btn {

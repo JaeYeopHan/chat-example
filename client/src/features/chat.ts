@@ -9,6 +9,7 @@ import {
 } from '@/api/chat'
 import { loadingActions } from './loading'
 import { connect, emit, leave } from '@/api/ws'
+import { readFileToBinary } from '@/utils/file'
 
 export interface IMessage {
   userId: string
@@ -126,6 +127,30 @@ export function sendMessage(
   }
 }
 
+export function sendImage(
+  roomId: string,
+  userId: string,
+  image: File,
+): AppThunk {
+  return async function(dispatch) {
+    try {
+      if (!userId) {
+        return
+      }
+
+      const contents = await readFileToBinary(image)
+
+      emit(roomId, {
+        userId,
+        type: 'image',
+        contents,
+      })
+    } catch (e) {
+      console.error('Fail to upload image')
+    }
+  }
+}
+
 export function leaveChat(roomId: string): AppThunk {
   return async function(dispatch) {
     try {
@@ -155,6 +180,7 @@ export const chatThunks = {
   getChatRooms,
   initializeChat,
   sendMessage,
+  sendImage,
   leaveChat,
   inviteUser,
 }
