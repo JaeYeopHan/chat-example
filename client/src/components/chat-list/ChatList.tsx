@@ -11,24 +11,26 @@ import { LOADING, ILoadingState } from '@/features/loading'
 import { Loading } from '../shared/Loading'
 
 import { getDate } from '@/utils/date'
+import { USER, IUserState } from '@/features/user'
 
 export const ChatList = () => {
   const { id } = useParams()
   const dispatch = useDispatch()
 
+  const { me } = useSelector<RootState, IUserState>(state => state[USER])
   const state = useSelector<RootState, IChatState>(state => state[CHAT])
   const loading = useSelector<RootState, ILoadingState>(state => state[LOADING])
 
   const handleClickCreate = () => {
-    dispatch(chatThunks.postChatRoom())
+    dispatch(chatThunks.postChatRoom(me))
   }
   const handleClickJoin = (id: string) => {
     push(`/chat/${id}`)
   }
 
   useEffect(() => {
-    dispatch(chatThunks.getChatRooms())
-  }, [dispatch])
+    dispatch(chatThunks.getChatRooms(me))
+  }, [dispatch, me])
 
   return (
     <main className="main">

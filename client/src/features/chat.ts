@@ -1,7 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { AppThunk } from '.'
 
-import { createChatRoom, IChatRoom, fetchChatRooms } from '@/api/chat'
+import {
+  createChatRoom,
+  IChatRoom,
+  fetchChatRooms,
+  inviteUserToRoom,
+} from '@/api/chat'
 import { loadingActions } from './loading'
 import { connect, emit, leave } from '@/api/ws'
 
@@ -50,11 +55,11 @@ const _ = createSlice({
   },
 })
 
-export function getChatRooms(): AppThunk {
+export function getChatRooms(userId: string): AppThunk {
   return async function(dispatch) {
     try {
       dispatch(loadingActions.start(name))
-      const results = await fetchChatRooms()
+      const results = await fetchChatRooms({ userId })
       dispatch(chatActions.success(results))
     } catch (e) {
       console.error(e)
@@ -64,15 +69,15 @@ export function getChatRooms(): AppThunk {
   }
 }
 
-export function postChatRoom(): AppThunk {
+export function postChatRoom(userId: string): AppThunk {
   return async function(dispatch) {
     try {
       dispatch(loadingActions.start(name))
       const title = await prompt('채팅방 이름을 입력해주세요.')
 
       if (title) {
-        await createChatRoom({ title })
-        dispatch(chatThunks.getChatRooms())
+        await createChatRoom({ title, userId })
+        dispatch(chatThunks.getChatRooms(userId))
       }
     } catch (e) {
       console.error(e)
@@ -117,10 +122,20 @@ export function sendMessage(
   }
 }
 
-export function leaveChat(roomId: string): AppThunk {
+export function leaveChat(): AppThunk {
   return async function(dispatch) {
     try {
-      leave(roomId)
+      leave()
+    } catch (e) {
+      console.error(e)
+    }
+  }
+}
+
+export function inviteUser(roomId: string, targetId: string): AppThunk {
+  return async function(dispatch) {
+    try {
+      await inviteUserToRoom({ roomId, userId: targetId })
     } catch (e) {
       console.error(e)
     }
@@ -136,4 +151,5 @@ export const chatThunks = {
   initializeChat,
   sendMessage,
   leaveChat,
+  inviteUser,
 }

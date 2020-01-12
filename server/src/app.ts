@@ -20,5 +20,6 @@ app.use(flash())
 app.post('/login', userController.login)
 app.get('/chatrooms', chatController.getChatRooms)
 app.post('/chatrooms', chatController.createChatRoom)
+app.post('/chatrooms/invite', chatController.inviteUserToRoom)
 
 export default app

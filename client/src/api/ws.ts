@@ -42,6 +42,6 @@ export function emit(roomId: string, message: IMessage) {
   socket.emit('send:message', data)
 }
 
-export function leave(roomId: string) {
-  socket.leave(roomId)
+export function leave() {
+  socket.disconnect()
 }

@@ -26,17 +26,27 @@ export const Chat = () => {
     dispatch(chatThunks.sendMessage(roomId, me, val))
     setVal('')
   }
+  const handleClickInviteButton = () => {
+    const targetId = prompt('초대할 ID를 입력해주세요.')
+
+    if (targetId) {
+      dispatch(chatThunks.inviteUser(roomId, targetId))
+    }
+  }
 
   useEffect(() => {
     dispatch(chatThunks.initializeChat(roomId, me))
 
     return () => {
-      dispatch(chatThunks.leaveChat(roomId))
+      dispatch(chatThunks.leaveChat())
     }
   }, [dispatch, roomId, me])
 
   return (
     <main className="main">
+      <button className="invite-btn" onClick={handleClickInviteButton}>
+        Invite
+      </button>
       <h2 className="sub-title">Chat: #{roomId}</h2>
       <div className="input">
         <label htmlFor="message-text-input"></label>
