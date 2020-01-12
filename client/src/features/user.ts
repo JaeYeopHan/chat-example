@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { userLogin } from '@/api/user'
+import { userLogin, userLogout } from '@/api/user'
 import { push } from '@/utils/history'
 
 import { AppThunk } from '.'
@@ -42,9 +42,27 @@ export function login(id: string): AppThunk {
   }
 }
 
+export function logout(id: string): AppThunk {
+  return async function(dispatch) {
+    try {
+      const results = await userLogout({ id })
+
+      if (results.success) {
+        dispatch(userActions.success(''))
+        alert(`로그아웃 되었습니다. ${id}`)
+      } else {
+        dispatch(userActions.fail())
+      }
+    } catch (e) {
+      console.error(e)
+    }
+  }
+}
+
 export const USER = _.name
 export const userReducer = _.reducer
 export const userActions = _.actions
 export const userThunks = {
   login,
+  logout,
 }

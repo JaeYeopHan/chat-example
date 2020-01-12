@@ -18,6 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(flash())
 
 app.post('/login', userController.login)
+app.post('/logout', userController.logout)
 app.get('/chatrooms', chatController.getChatRooms)
 app.post('/chatrooms', chatController.createChatRoom)
 app.post('/chatrooms/invite', chatController.inviteUserToRoom)

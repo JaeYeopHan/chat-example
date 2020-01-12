@@ -1,4 +1,4 @@
-const logginedUsers: string[] = []
+let logginedUsers: string[] = []
 const chatRooms: ChatRoom[] = []
 
 export interface ChatRoom {
@@ -8,15 +8,26 @@ export interface ChatRoom {
   users: string[]
 }
 
-export function loginUser(id: string): boolean {
-  if (isAlreadyExistUser(id)) {
+export function loginUser(userId: string): boolean {
+  if (isAlreadyExistUser(userId)) {
     return false
   }
-  logginedUsers.push(id)
+  logginedUsers.push(userId)
   return true
 }
-export function isAlreadyExistUser(id: string) {
-  return logginedUsers.indexOf(id) > -1
+
+export function isAlreadyExistUser(userId: string): boolean {
+  return logginedUsers.indexOf(userId) > -1
+}
+
+export function logoutUser(userId: string): boolean {
+  if (logginedUsers.indexOf(userId) === -1) {
+    return false
+  }
+  const filtered = logginedUsers.filter(id => id !== userId)
+
+  logginedUsers = filtered
+  return true
 }
 
 export function addChatRoom(title: string, userId: string): ChatRoom {

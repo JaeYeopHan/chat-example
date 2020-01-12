@@ -29,6 +29,11 @@ export const Main = () => {
         <div className="main-message">반갑습니다! {me}님</div>
         <div className="main-message-link">
           <Link to={`/chat-list/${me}`}>채팅방 리스트로 이동하기</Link>
+          <div>
+            <button onClick={() => dispatch(userThunks.logout(me))}>
+              로그아웃
+            </button>
+          </div>
         </div>
       </main>
     )

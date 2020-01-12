@@ -13,3 +13,17 @@ export function userLogin(
 ): Promise<ILoginResponseData> {
   return api.post('/login', { data })
 }
+
+export interface ILogoutRequestData {
+  id: string
+}
+
+export interface ILogoutResponseData {
+  success: boolean
+}
+
+export function userLogout(
+  data: ILogoutRequestData,
+): Promise<ILogoutResponseData> {
+  return api.post('/logout', { data })
+}

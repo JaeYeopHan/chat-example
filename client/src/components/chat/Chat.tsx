@@ -38,7 +38,7 @@ export const Chat = () => {
     dispatch(chatThunks.initializeChat(roomId, me))
 
     return () => {
-      dispatch(chatThunks.leaveChat())
+      dispatch(chatThunks.leaveChat(roomId))
     }
   }, [dispatch, roomId, me])
 

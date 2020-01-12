@@ -122,9 +122,10 @@ export function sendMessage(
   }
 }
 
-export function leaveChat(): AppThunk {
+export function leaveChat(roomId: string): AppThunk {
   return async function(dispatch) {
     try {
+      // dispatch(chatActions.clearRoom(roomId))
       leave()
     } catch (e) {
       console.error(e)
