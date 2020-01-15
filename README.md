@@ -6,6 +6,7 @@
 
 ```sh
 # git clone...
+$ npm run setup
 $ npm run build:server
 $ npm run start:server
 $ npm run start:client
