@@ -4,6 +4,9 @@
   "description": "Chatting application with Socket",
   "main": "index.js",
   "scripts": {
+    "setup": "npm run install:client && npm run install:server",
+    "install:client": "cd client && yarn",
+    "install:server": "cd server && yarn",
     "start:client": "cd client && npm start",
     "build:server": "cd server && npm run build",
     "start:server": "cd server && npm run serve"
