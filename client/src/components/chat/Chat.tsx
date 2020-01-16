@@ -67,7 +67,11 @@ export const Chat = () => {
           value={val}
           onChange={handleChange}
         />
-        <button className="input-btn" onClick={handleClickSend}>
+        <button
+          className="input-btn"
+          disabled={!chatState.isAvailable}
+          onClick={handleClickSend}
+        >
           Send
         </button>
         <label className="input-btn input-image-label" htmlFor="image">
@@ -79,6 +83,7 @@ export const Chat = () => {
           accept="image/*"
           className="input-image"
           onChange={handleChangeFile}
+          disabled={!chatState.isAvailable}
         />
       </div>
       {messages && (
