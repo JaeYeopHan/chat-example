@@ -78,7 +78,7 @@ export function postChatRoom(userId: string): AppThunk {
   return async function(dispatch) {
     try {
       dispatch(loadingActions.start(name))
-      const title = await prompt('채팅방 이름을 입력해주세요.')
+      const title = prompt('채팅방 이름을 입력해주세요.')
 
       if (title) {
         await createChatRoom({ title, userId })
