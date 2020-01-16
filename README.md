@@ -36,7 +36,12 @@ $ npm run start:client
 ### 1. Real-time Network
 
 - Socket.io 사용
+- 채팅 메세지에만 적용 (채팅방 목록 제외)
 
 ### 2. Image stream
 
-- Data URI formatdmfh string 기반 전송
+- Data URI format으로 string 기반 전송
+
+### 3. Invite
+
+- 초대라는 기능을 자신이 포함된 방만 노출되도록 구현
